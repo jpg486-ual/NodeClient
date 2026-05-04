@@ -1,0 +1,169 @@
+# Build de NodeClient en macOS (Debug + Release) e iOS Simulator (Debug),
+# y publicación de release en GitHub al pushear a `main`.
+#
+# Complementa `swiftpm-ci.yml` (que corre `swift test` con cobertura del
+# target `NodeClientCore`) con un build completo del proyecto Xcode —
+# incluye `NodeClientApp.swift`, los shells iOS/macOS, `Views/Files/`
+# (UIKit-only), Asset catalogs, Info.plist y el target FileProvider que
+# SwiftPM no compila. Si esto verde y el test verde, hay alta confianza
+# de que un commit a `main` no rompe la app real.
+#
+# Configuraciones publicadas:
+#  - macOS Debug:   símbolos completos, sin optimizaciones; útil para QA
+#                   con crashes legibles.
+#  - macOS Release: optimizaciones activas; tamaño/perf representativos
+#                   de un build distribuible. Sin firma — Gatekeeper
+#                   pedirá right-click → Abrir la primera vez.
+#  - iOS Simulator Debug: instalable con `xcrun simctl install booted`.
+#                   Release iOS sin signing tiene poca utilidad práctica
+#                   (no corre en device, no se puede subir a TestFlight)
+#                   así que omitido hasta que se monte signing en CI.
+#
+# Política de path filtering: cambios exclusivos en `docs/**`, `.github/**`
+# o `.gitignore` no disparan el workflow (ni build ni release). Esto
+# evita pintar tags de release por modificar un README.
+
+name: Build & Release
+
+on:
+  push:
+    branches: [main]
+    paths-ignore:
+      - 'docs/**'
+      - '.github/**'
+      - '.gitignore'
+  workflow_dispatch:
+
+permissions:
+  contents: write   # crear el GitHub Release con `softprops/action-gh-release`.
+
+jobs:
+  build:
+    name: Build ${{ matrix.platform }} (${{ matrix.configuration }})
+    runs-on: macos-latest
+    timeout-minutes: 30
+
+    strategy:
+      # Si una variante falla, las demás siguen para no perder el resto
+      # de artefactos por una regresión platform/config-specific.
+      fail-fast: false
+      matrix:
+        include:
+          - platform: macOS
+            configuration: Debug
+            sdk: macosx
+            destination: "platform=macOS"
+            artifact-name: nodeclient-macos-debug
+          - platform: macOS
+            configuration: Release
+            sdk: macosx
+            destination: "platform=macOS"
+            artifact-name: nodeclient-macos-release
+          - platform: iOS
+            configuration: Release
+            sdk: iphonesimulator
+            destination: "generic/platform=iOS Simulator"
+            artifact-name: nodeclient-ios-simulator-debug
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Show Xcode version
+        run: xcodebuild -version
+
+      - name: Build NodeClient (${{ matrix.platform }} / ${{ matrix.configuration }})
+        run: |
+          xcodebuild clean build \
+            -project NodeClient.xcodeproj \
+            -scheme NodeClient \
+            -configuration ${{ matrix.configuration }} \
+            -sdk ${{ matrix.sdk }} \
+            -destination '${{ matrix.destination }}' \
+            -derivedDataPath ./DerivedData \
+            CODE_SIGN_IDENTITY="" \
+            CODE_SIGNING_REQUIRED=NO \
+            CODE_SIGNING_ALLOWED=NO
+
+      - name: List build products
+        if: success()
+        run: |
+          echo "=== ${{ matrix.platform }} ${{ matrix.configuration }} build products ==="
+          find ./DerivedData/Build/Products -maxdepth 4 -name "*.app" -type d -print
+          ls -R ./DerivedData/Build/Products/ || true
+
+      - name: Upload artifact
+        if: success()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ matrix.artifact-name }}
+          path: ./DerivedData/Build/Products/**/*.app
+          retention-days: 30
+          if-no-files-found: error
+
+  release:
+    name: Create Release
+    runs-on: ubuntu-latest
+    needs: [build]
+    # Solo en push directo a `main`. PRs no publican release. Si la matriz
+    # de build falló parcialmente, `needs.build.result` es `failure` y
+    # tampoco publicamos.
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main' && needs.build.result == 'success'
+
+    steps:
+      - name: Checkout (full history for changelog)
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Download all artifacts
+        uses: actions/download-artifact@v4
+        with:
+          path: ./artifacts
+
+      - name: Zip artifacts per platform
+        run: |
+          set -euo pipefail
+          cd ./artifacts
+          for dir in */; do
+            name="${dir%/}"
+            (cd "$dir" && zip -r "../${name}.zip" .)
+          done
+          ls -lh ./*.zip
+
+      - name: Compute version tag
+        id: version
+        run: |
+          # Tag monótono y reproducible: vA.B.<commit-count>. Si en algún
+          # momento se realiza un release 1.X o posterior, modificar.
+          VERSION="v0.$(git rev-list --count HEAD)"
+          echo "version=$VERSION" >> "$GITHUB_OUTPUT"
+          echo "Version: $VERSION"
+
+      - name: Build changelog since last tag
+        run: |
+          LAST_TAG=$(git describe --tags --abbrev=0 2>/dev/null || true)
+          if [ -z "$LAST_TAG" ]; then
+            git log --pretty=format:"- %s (%h)" --max-count=20 > changes.txt
+          else
+            git log "$LAST_TAG"..HEAD --pretty=format:"- %s (%h)" > changes.txt
+          fi
+          echo "--- changes.txt ---"
+          cat changes.txt
+          echo "--------------------"
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ steps.version.outputs.version }}
+          name: NodeClient ${{ steps.version.outputs.version }}
+          body_path: changes.txt
+          # Pre-release porque los artefactos van **sin firmar**: macOS
+          # Release optimizado pero Gatekeeper-bloqueado al primer arranque,
+          # iOS Simulator solo instalable en simulator. Cambiar a `false`
+          # cuando se añada signing (cert P12 + provisioning como secrets).
+          prerelease: true
+          generate_release_notes: true
+          files: artifacts/*.zip
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

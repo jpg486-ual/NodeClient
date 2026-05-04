@@ -1,0 +1,56 @@
+# CI SwiftPM con suite Core verde + coverage.
+
+name: SwiftPM CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  test:
+    name: swift test (macos-latest)
+    runs-on: macos-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Show Swift version
+        run: swift --version
+
+      - name: Swift build
+        run: swift build --target NodeClientCore
+
+      - name: Swift test with code coverage
+        run: swift test --enable-code-coverage --parallel
+
+      - name: Locate coverage profdata
+        id: locate-coverage
+        run: |
+          PROFDATA=$(find .build -name 'default.profdata' | head -n 1)
+          if [ -z "$PROFDATA" ]; then
+            echo "No profdata produced (tests may have skipped)."
+            exit 0
+          fi
+          echo "profdata=$PROFDATA" >> "$GITHUB_OUTPUT"
+
+      - name: Generate coverage report
+        if: steps.locate-coverage.outputs.profdata != ''
+        run: |
+          BIN=$(find .build -name '*.xctest' -type d | head -n 1)/Contents/MacOS/$(basename $(find .build -name '*.xctest' -type d | head -n 1) .xctest)
+          xcrun llvm-cov report \
+            "$BIN" \
+            --instr-profile "${{ steps.locate-coverage.outputs.profdata }}" \
+            --ignore-filename-regex='\.build|Tests' \
+            > coverage-report.txt
+          cat coverage-report.txt
+
+      - name: Upload coverage artifact
+        if: steps.locate-coverage.outputs.profdata != ''
+        uses: actions/upload-artifact@v4
+        with:
+          name: coverage-report
+          path: coverage-report.txt
+          retention-days: 30

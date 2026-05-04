@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!--
+  Privacy manifest.
+
+  Declara los uses de "Required Reasons APIs" presentes en el código
+  actual de NodeClient. Mandatorio por Apple App Store desde mayo 2024.
+
+    - UserDefaults (CA92.1): SessionStore, telemetry, prefs, shared suite.
+    - FileTimestamp (C617.1): RecentItem, Conflict.detectedAt,
+      FsEntryResponse.updatedAt mostrado en UI.
+
+  NodeClient NO realiza tracking ni envía datos a terceros.
+  El backend Node es propiedad de la organización.
+-->
+<plist version="1.0">
+<dict>
+	<!-- Cero tracking: NodeClient no rastrea al usuario. -->
+	<key>NSPrivacyTracking</key>
+	<false/>
+	<key>NSPrivacyTrackingDomains</key>
+	<array/>
+
+	<!-- Cero data collection hacia servicios terceros. El backend
+	     Node lo controla el administrador y el contrato es enterprise. -->
+	<key>NSPrivacyCollectedDataTypes</key>
+	<array/>
+
+	<!-- Required Reasons APIs en uso real en el código. -->
+	<key>NSPrivacyAccessedAPITypes</key>
+	<array>
+		<dict>
+			<key>NSPrivacyAccessedAPIType</key>
+			<string>NSPrivacyAccessedAPICategoryUserDefaults</string>
+			<key>NSPrivacyAccessedAPITypeReasons</key>
+			<array>
+				<!-- CA92.1 — Access info from same app, per documentation. -->
+				<string>CA92.1</string>
+			</array>
+		</dict>
+		<dict>
+			<key>NSPrivacyAccessedAPIType</key>
+			<string>NSPrivacyAccessedAPICategoryFileTimestamp</string>
+			<key>NSPrivacyAccessedAPITypeReasons</key>
+			<array>
+				<!-- C617.1 — Display to the person who owns the file. -->
+				<string>C617.1</string>
+			</array>
+		</dict>
+	</array>
+</dict>
+</plist>

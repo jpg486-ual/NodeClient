@@ -1,0 +1,1541 @@
+{
+  "sourceLanguage" : "es",
+  "strings" : {
+    "¿Eliminar archivo?" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Delete file?"
+          }
+        }
+      }
+    },
+    "¿No tienes cuenta?" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Don't have an account?"
+          }
+        }
+      }
+    },
+    "¿Qué es el cifrado en el cliente?" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "What is client-side encryption?"
+          }
+        }
+      }
+    },
+    "¿Resetear configuración de cifrado?" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reset encryption settings?"
+          }
+        }
+      }
+    },
+    "¿Sobreescribir archivo?" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Overwrite file?"
+          }
+        }
+      }
+    },
+    "«%@»" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "«%@»"
+          }
+        }
+      }
+    },
+    "%lld" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld"
+          }
+        }
+      }
+    },
+    "Abre el formulario de creación de cuenta con código de invitación." : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Open the account creation form with the invitation code."
+          }
+        }
+      }
+    },
+    "Abre la carpeta." : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Open the folder."
+          }
+        }
+      }
+    },
+    "Acerca del cifrado" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "About encryption"
+          }
+        }
+      }
+    },
+    "Activar cifrado" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Enable encryption"
+          }
+        }
+      }
+    },
+    "Activo — todos los uploads se cifran automáticamente" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Active — all uploads are automatically encrypted"
+          }
+        }
+      }
+    },
+    "Activo desde" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Active since"
+          }
+        }
+      }
+    },
+    "Ajustes" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Settings"
+          }
+        }
+      }
+    },
+    "Aquí aparecerán los archivos que abras desde NodeClient." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Files you open from NodeClient will appear here."
+          }
+        }
+      }
+    },
+    "Archivos" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Files"
+          }
+        }
+      }
+    },
+    "Base URL" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "URL"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "URL"
+          }
+        }
+      }
+    },
+    "Borra el elemento permanentemente; pedirá confirmación." : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Delete the item permanently; it will ask for confirmation."
+          }
+        }
+      }
+    },
+    "Cambia el nombre de la carpeta." : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Change the folder name."
+          }
+        }
+      }
+    },
+    "Cambia el nombre del archivo manteniendo la carpeta." : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Change the file name while keeping the folder."
+          }
+        }
+      }
+    },
+    "Cancel" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cancel"
+          }
+        }
+      }
+    },
+    "Cancelar" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cancel"
+          }
+        }
+      }
+    },
+    "Cancelar descarga de %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cancel download of %@"
+          }
+        }
+      }
+    },
+    "Cerrar" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Close"
+          }
+        }
+      }
+    },
+    "Cerrar sesión" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sign out"
+          }
+        }
+      }
+    },
+    "Cifrado" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Encryption"
+          }
+        }
+      }
+    },
+    "Cifrado activo" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Active encryption"
+          }
+        }
+      }
+    },
+    "Código de invitación" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Invitation code"
+          }
+        }
+      }
+    },
+    "Comprimir antes de cifrar" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Compress before encrypting"
+          }
+        }
+      }
+    },
+    "Con código de invitación" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "With invitation code"
+          }
+        }
+      }
+    },
+    "Configurado pero token no encontrado en este dispositivo" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Configured but token not found on this device"
+          }
+        }
+      }
+    },
+    "Confirmar" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Confirm"
+          }
+        }
+      }
+    },
+    "Confirmar contraseña" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Confirm password"
+          }
+        }
+      }
+    },
+    "Connects to your NodeClient server with the credentials above." : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Connect to your node with your credentials."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Conéctate a tu nodo con tus credenciales."
+          }
+        }
+      }
+    },
+    "Crea una cuenta nueva con un código de invitación." : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Create a new account with an invitation code."
+          }
+        }
+      }
+    },
+    "Crear cuenta" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Create account"
+          }
+        }
+      }
+    },
+    "Crear nueva carpeta en la ubicación actual" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Make new folder in the current location"
+          }
+        }
+      }
+    },
+    "Create" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Create"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Crear"
+          }
+        }
+      }
+    },
+    "Create a folder." : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Create a folder in the current directory."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Crea una carpeta en el directorio actual."
+          }
+        }
+      }
+    },
+    "Credenciales" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Credentials"
+          }
+        }
+      }
+    },
+    "Credentials" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Credentials"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Credenciales"
+          }
+        }
+      }
+    },
+    "Criterio" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mode"
+          }
+        }
+      }
+    },
+    "Debug Sync Metrics" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Debug Sync Metrics"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Métricas Debug de Sync"
+          }
+        }
+      }
+    },
+    "Descarga" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Download"
+          }
+        }
+      }
+    },
+    "Descargar %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Download %@"
+          }
+        }
+      }
+    },
+    "Destino" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Destination"
+          }
+        }
+      }
+    },
+    "Detalles" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Details"
+          }
+        }
+      }
+    },
+    "Diagnóstico" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Diagnosis"
+          }
+        }
+      }
+    },
+    "Dirección" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Way"
+          }
+        }
+      }
+    },
+    "El token no está guardado aquí — no se puede re-exportar." : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The token is not stored here — it cannot be re-exported."
+          }
+        }
+      }
+    },
+    "Eliminar" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Delete"
+          }
+        }
+      }
+    },
+    "Eliminar %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Delete %@"
+          }
+        }
+      }
+    },
+    "Esta acción no se puede deshacer. El archivo se borrará permanentemente." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "This action cannot be undone. The file will be permanently deleted."
+          }
+        }
+      }
+    },
+    "Esto eliminará el token y los parámetros de derivación. Los archivos cifrados existentes quedarán inaccesibles para siempre." : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "This will remove the token and bypass parameters. Existing encrypted files will be permanently inaccessible.\n"
+          }
+        }
+      }
+    },
+    "Exportar a archivo" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Export to file"
+          }
+        }
+      }
+    },
+    "Exportar token a archivo" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Export token to file"
+          }
+        }
+      }
+    },
+    "Favoritos" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Favorites"
+          }
+        }
+      }
+    },
+    "Fecha de modificación" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Modification date"
+          }
+        }
+      }
+    },
+    "Folder name" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Folder name"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nombre"
+          }
+        }
+      }
+    },
+    "Fotos" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Photos"
+          }
+        }
+      }
+    },
+    "Generar token de cifrado" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Generate encryption token"
+          }
+        }
+      }
+    },
+    "Guarda este token en un lugar seguro" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Keep this token in a safe place"
+          }
+        }
+      }
+    },
+    "Guardar en Archivos" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Save to Files"
+          }
+        }
+      }
+    },
+    "Guardar token en este dispositivo" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Save token in this device"
+          }
+        }
+      }
+    },
+    "Importar token desde archivo" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Import token from file"
+          }
+        }
+      }
+    },
+    "Info" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Info"
+          }
+        }
+      }
+    },
+    "Inicia sesión en tu nodo" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Log in to your node"
+          }
+        }
+      }
+    },
+    "Inicia sesión para ver tu cuota." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sign in to see your quota."
+          }
+        }
+      }
+    },
+    "Introduce el nuevo nombre para «%@»." : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Enter the new name for \"%@\"."
+          }
+        }
+      }
+    },
+    "Las imágenes que sincronices con NodeClient aparecerán aquí." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Images you sync with NodeClient will appear here."
+          }
+        }
+      }
+    },
+    "Loading files..." : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Loading files..."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cargando archivos…"
+          }
+        }
+      }
+    },
+    "Los archivos descargados se guardarán aquí para acceso sin conexión." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Downloaded files will be saved here for offline access."
+          }
+        }
+      }
+    },
+    "Los archivos se cifran en este dispositivo antes de subirse al servidor. El token nunca viaja al servidor." : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The files are encrypted on this device before being uploaded to the server. The token never goes to the server."
+          }
+        }
+      }
+    },
+    "Marcar favorito" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mark as favorite"
+          }
+        }
+      }
+    },
+    "Mover" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Move"
+          }
+        }
+      }
+    },
+    "Mover «%@» a…" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Move %@ to"
+          }
+        }
+      }
+    },
+    "Mover %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Move %@"
+          }
+        }
+      }
+    },
+    "Mueve el elemento a otra carpeta." : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Move the file to another folder."
+          }
+        }
+      }
+    },
+    "New Folder" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "New Folder"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nueva Carpeta"
+          }
+        }
+      }
+    },
+    "No hay carpetas disponibles. Usa la raíz «/»." : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No folders available. Use the root directory \"/\"."
+          }
+        }
+      }
+    },
+    "Node" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dirección"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dirección"
+          }
+        }
+      }
+    },
+    "Node Login" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "NodeClient"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "NodeClient"
+          }
+        }
+      }
+    },
+    "NodeClient" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "NodeClient"
+          }
+        }
+      }
+    },
+    "Nombre" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Name"
+          }
+        }
+      }
+    },
+    "Nueva carpeta" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "New folder"
+          }
+        }
+      }
+    },
+    "Nuevo nombre" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "New name"
+          }
+        }
+      }
+    },
+    "OK" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "OK"
+          }
+        }
+      }
+    },
+    "Ordenar archivos" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sort files"
+          }
+        }
+      }
+    },
+    "Password" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Password"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Contraseña"
+          }
+        }
+      }
+    },
+    "Preferencias" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Preferences"
+          }
+        }
+      }
+    },
+    "Quitar de favoritos" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Remove from favorites"
+          }
+        }
+      }
+    },
+    "Quota desconocida" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Quota unknown"
+          }
+        }
+      }
+    },
+    "Reactivar cifrado" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reactivate encryption"
+          }
+        }
+      }
+    },
+    "Recargar" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reload"
+          }
+        }
+      }
+    },
+    "Recargar archivos" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reload files"
+          }
+        }
+      }
+    },
+    "Recientes" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Recents"
+          }
+        }
+      }
+    },
+    "RECOMENDADA" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "RECOMMENDED"
+          }
+        }
+      }
+    },
+    "Recomendado. Auto-unlock al abrir la app." : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Recommended. Auto-unlock when opening the app."
+          }
+        }
+      }
+    },
+    "Recomendado. Reduce el tamaño que ocupa cada archivo en la red. La app omite la compresión automáticamente en archivos que ya están comprimidos (jpg, mp4, zip, pdf con imágenes)." : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Recommended. Reduces the size of each file on the network. The app automatically skips compression on files that are already compressed (jpg, mp4, zip, pdf with images)."
+          }
+        }
+      }
+    },
+    "Recomendado. Se guarda en el llavero del sistema y se desbloquea automáticamente al abrir la app." : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Recommended. It's saved to the system keychain and unlocks automatically when you open the app."
+          }
+        }
+      }
+    },
+    "Reconstruyendo archivo" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reconstructing file"
+          }
+        }
+      }
+    },
+    "Reconstruyendo archivo. %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reconstructing file %@"
+          }
+        }
+      }
+    },
+    "Refresh" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Refresh"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Recargar"
+          }
+        }
+      }
+    },
+    "Registra el usuario con el código de invitación e inicia sesión automáticamente." : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Register the user with the invitation code and log in automatically."
+          }
+        }
+      }
+    },
+    "Renombrar" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rename"
+          }
+        }
+      }
+    },
+    "Renombrar %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rename %@"
+          }
+        }
+      }
+    },
+    "Reset Metrics" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reset Metrics"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Restablecer Métricas"
+          }
+        }
+      }
+    },
+    "Resetear" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reset"
+          }
+        }
+      }
+    },
+    "Resetear cifrado" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reset "
+          }
+        }
+      }
+    },
+    "Settings" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Settings"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ajustes"
+          }
+        }
+      }
+    },
+    "Share" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Export"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Exportar"
+          }
+        }
+      }
+    },
+    "Si pierdes el token y no lo guardaste en el dispositivo ni en un archivo, los archivos cifrados quedarán inaccesibles para siempre." : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "If you lose the token and did not save it on the device or in a file, the encrypted files will be inaccessible forever."
+          }
+        }
+      }
+    },
+    "Si pierdes este token y no lo guardaste en el dispositivo, los archivos cifrados serán irrecuperables." : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "If you lose this token and did not save it on the device, the encrypted files will be unrecoverable."
+          }
+        }
+      }
+    },
+    "Sign In" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sign In"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Iniciar sesión"
+          }
+        }
+      }
+    },
+    "Sign Out" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sign Out"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cerrar sesión"
+          }
+        }
+      }
+    },
+    "Signing Out..." : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Signing Out..."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cerrando sesión…"
+          }
+        }
+      }
+    },
+    "Signing Out…" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cerrando sesión…"
+          }
+        }
+      }
+    },
+    "Sin acción; usa los botones laterales." : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No action; use the side buttons."
+          }
+        }
+      }
+    },
+    "Sin archivos en caché" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No cached files"
+          }
+        }
+      }
+    },
+    "Sin archivos recientes" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No recent files"
+          }
+        }
+      }
+    },
+    "Sin conexión" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Offline"
+          }
+        }
+      }
+    },
+    "Sin configurar — los uploads van en claro" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Without configuration — uploads are sent in plain text"
+          }
+        }
+      }
+    },
+    "Sin favoritos" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No favorites"
+          }
+        }
+      }
+    },
+    "Sin fotos" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No photos"
+          }
+        }
+      }
+    },
+    "Sobreescribir" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Overwrite"
+          }
+        }
+      }
+    },
+    "Soltar para subir aquí" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Drop to upload here"
+          }
+        }
+      }
+    },
+    "Subir archivo" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Upload file"
+          }
+        }
+      }
+    },
+    "Subir archivo a la ubicación actual" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Move file to the current location"
+          }
+        }
+      }
+    },
+    "Tamaño" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Size"
+          }
+        }
+      }
+    },
+    "Toca la estrella en cualquier archivo o carpeta para añadirlo aquí." : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tap the star on any file or folder to add it here."
+          }
+        }
+      }
+    },
+    "Toca la estrella en cualquier archivo para añadirlo aquí." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tap the star on any file to add it here."
+          }
+        }
+      }
+    },
+    "Token" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Token"
+          }
+        }
+      }
+    },
+    "Token generado" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Token generated"
+          }
+        }
+      }
+    },
+    "Tus archivos se cifran en este iPhone/Mac antes de subirlos. El servidor sólo guarda los bytes cifrados." : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Your files are encrypted on this device before being uploaded. The server only stores the encrypted bytes."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tus archivos se cifran en este dispositivo antes de subirlos. El servidor sólo guarda los bytes cifrados."
+          }
+        }
+      }
+    },
+    "Uploading file..." : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Uploading file..."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Subiendo archivo…"
+          }
+        }
+      }
+    },
+    "Username" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Username"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Usuario"
+          }
+        }
+      }
+    },
+    "Ya existe un archivo «%@» en esta carpeta. Si confirmas, su contenido se reemplazará por el archivo nuevo. La versión anterior no se podrá recuperar." : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A file named \"%@\" already exists in this folder. If you confirm, its contents will be replaced with the new file. The previous version cannot be recovered."
+          }
+        }
+      }
+    }
+  },
+  "version" : "1.0"
+}
