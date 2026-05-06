@@ -36,8 +36,28 @@ final class SessionStore: ObservableObject {
         self.userDefaults = resolvedDefaults
         self.tokenStore = resolvedTokenStore
         self.baseURL = resolvedDefaults.string(forKey: Self.baseURLKey) ?? "http://localhost:8081"
-        let storedUsername = resolvedDefaults.string(forKey: Self.usernameKey)
-        self.username = storedUsername?.isEmpty == false ? storedUsername : nil
+        // El username vive en dos sitios: UserDefaults App Group (lectura
+        // rápida) y Keychain (sobrevive a reinstalaciones que limpian el
+        // Group Container, típico de un build & run de Xcode en macOS sin
+        // firma estable). El protocolo `SessionTokenStore` declara explícita
+        // la responsabilidad del Keychain como fallback. Sin esta lectura el
+        // `unlockEncryptionVaultIfPossible` de NodeClientApp aborta en su
+        // guard tras una reinstalación porque el Group Container vacío deja
+        // username = nil, dejando el cifrado inactivo hasta abrir Settings.
+        let keychainUsername: String?
+        do {
+            keychainUsername = try resolvedTokenStore.readUsername()
+        } catch {
+            keychainUsername = nil
+        }
+        if let stored = resolvedDefaults.string(forKey: Self.usernameKey), !stored.isEmpty {
+            self.username = stored
+        } else if let fromKeychain = keychainUsername, !fromKeychain.isEmpty {
+            resolvedDefaults.set(fromKeychain, forKey: Self.usernameKey)
+            self.username = fromKeychain
+        } else {
+            self.username = nil
+        }
         // quotaMb persistido como Int en UserDefaults; ausencia = nil (no 0).
         if resolvedDefaults.object(forKey: Self.quotaMbKey) is Int {
             self.quotaMb = resolvedDefaults.integer(forKey: Self.quotaMbKey)

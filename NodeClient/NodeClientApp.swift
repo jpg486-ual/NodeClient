@@ -33,6 +33,9 @@ struct NodeClientApp: App {
                     unlockEncryptionVaultIfPossible()
                     refreshSessionTokenIfNeeded()
                 }
+                .onReceive(sessionStore.$username) { newUsername in
+                    handleUsernameChange(newUsername)
+                }
         }
         #if os(iOS)
         .backgroundTask(.appRefresh(BackgroundSyncIdentifier.appRefresh)) {
@@ -85,6 +88,41 @@ struct NodeClientApp: App {
             legacy: KeychainEncryptionPasswordStore(),
             shared: NodeClientAppGroups.makeSharedEncryptionPasswordStore()
         )
+    }
+
+    /// Reacciona al cambio del username publicado por `SessionStore`. Este
+    /// hook complementa el `unlockEncryptionVaultIfPossible` de `.onAppear`
+    /// para dos escenarios donde el de arranque no basta:
+    ///
+    ///  1. Tras una reinstalación que invalida el Keychain del token de
+    ///     sesión (típico de Xcode build & run con firma cambiante): la
+    ///     app recibe al usuario en LoginView, `.onAppear` corrió sin
+    ///     sesión y abortó. Tras login con un usuario
+    ///     distinto al previo el username transiciona vacío→valor y el
+    ///     unlock debe re-ejecutarse.
+    ///  2. Cuando el usuario activo cambia con el vault todavía cargado
+    ///     con la key del usuario anterior: hay que descartarla antes de
+    ///     intentar derivar la del nuevo, para no cifrar con clave ajena.
+    ///
+    /// Es idempotente: si el vault ya tiene la key del username actual, no
+    /// hace nada.
+    @MainActor
+    private func handleUsernameChange(_ newUsername: String?) {
+        let trimmed = newUsername?.trimmingCharacters(in: .whitespacesAndNewlines)
+        guard let trimmed, !trimmed.isEmpty else {
+            // Logout / sin sesión: el `SessionLogoutCleaner` y el flujo de
+            // logout son responsables de limpiar el vault. Aquí no tocamos.
+            return
+        }
+        if EncryptionKeyVault.shared.currentUsername == trimmed,
+           EncryptionKeyVault.shared.isUnlocked {
+            return
+        }
+        if let activeUser = EncryptionKeyVault.shared.currentUsername,
+           activeUser != trimmed {
+            EncryptionKeyVault.shared.lock()
+        }
+        unlockEncryptionVaultIfPossible()
     }
 
     /// Auto-unlock del `EncryptionKeyVault` al arranque si el usuario

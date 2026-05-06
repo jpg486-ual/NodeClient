@@ -54,6 +54,42 @@ final class SessionStoreTests: XCTestCase {
         XCTAssertTrue(tokenStore.writtenTokens.isEmpty)
     }
 
+    // Tras un build & run de Xcode (típico macOS) el Group Container puede
+    // limpiarse mientras el Keychain --persistido por bundle ID + access
+    // group-- sobrevive. Sin este fallback, sessionToken se restaura pero
+    // username queda nil y el auto-unlock del EncryptionKeyVault aborta en
+    // el guard, dejando el cifrado inactivo hasta que el usuario abre
+    // Settings → Cifrado.
+    func test_init_fallsBackToTokenStoreUsername_whenDefaultsEmpty() {
+        let defaults = testDefaults()
+        let tokenStore = MockSessionTokenStore(
+            storedToken: "secure-token",
+            storedUsername: "alice"
+        )
+
+        let sessionStore = SessionStore(userDefaults: defaults, tokenStore: tokenStore)
+
+        XCTAssertEqual(sessionStore.username, "alice")
+        XCTAssertEqual(
+            defaults.string(forKey: SessionStore.usernameKey),
+            "alice",
+            "El fallback debe repoblar UserDefaults para que la próxima ejecución no dependa del Keychain."
+        )
+    }
+
+    func test_init_prefersDefaultsUsername_overTokenStoreFallback() {
+        let defaults = testDefaults()
+        defaults.set("from-defaults", forKey: SessionStore.usernameKey)
+        let tokenStore = MockSessionTokenStore(
+            storedToken: "secure-token",
+            storedUsername: "from-keychain"
+        )
+
+        let sessionStore = SessionStore(userDefaults: defaults, tokenStore: tokenStore)
+
+        XCTAssertEqual(sessionStore.username, "from-defaults")
+    }
+
     // MARK: quotaMb propagation
 
     func test_init_quotaMb_isNilWhenNotPersisted() {
@@ -119,11 +155,14 @@ final class SessionStoreTests: XCTestCase {
 
 private final class MockSessionTokenStore: SessionTokenStore {
     private(set) var storedToken: String?
+    private(set) var storedUsername: String?
     private(set) var writtenTokens: [String] = []
+    private(set) var writtenUsernames: [String] = []
     private(set) var deleteCallCount = 0
 
-    init(storedToken: String? = nil) {
+    init(storedToken: String? = nil, storedUsername: String? = nil) {
         self.storedToken = storedToken
+        self.storedUsername = storedUsername
     }
 
     func readToken() throws -> String? {
@@ -138,5 +177,18 @@ private final class MockSessionTokenStore: SessionTokenStore {
     func deleteToken() throws {
         deleteCallCount += 1
         storedToken = nil
+    }
+
+    func readUsername() throws -> String? {
+        storedUsername
+    }
+
+    func writeUsername(_ username: String) throws {
+        storedUsername = username
+        writtenUsernames.append(username)
+    }
+
+    func deleteUsername() throws {
+        storedUsername = nil
     }
 }
