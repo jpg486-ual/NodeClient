@@ -8,8 +8,16 @@ name: SwiftLint
 on:
   push:
     branches: [main]
+    paths-ignore:
+      - 'docs/**'
+      - '.github/**'
+      - '.gitignore'    
   pull_request:
     branches: [main]
+    paths-ignore:
+      - 'docs/**'
+      - '.github/**'
+      - '.gitignore'
 
 jobs:
   lint:

@@ -5,8 +5,16 @@ name: SwiftPM CI
 on:
   push:
     branches: [main]
+    paths-ignore:
+      - 'docs/**'
+      - '.github/**'
+      - '.gitignore'    
   pull_request:
     branches: [main]
+    paths-ignore:
+      - 'docs/**'
+      - '.github/**'
+      - '.gitignore'
 
 jobs:
   test:
