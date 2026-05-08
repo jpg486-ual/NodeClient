@@ -87,6 +87,78 @@ final class MoreViewModelProfileRefreshTests: XCTestCase {
         XCTAssertNotNil(viewModel.profileRefreshError)
     }
 
+    /// Cuando el backend devuelve `quotaUsedBytes` (RS-inflated autoritativo),
+    /// `usedBytes` debe reflejar ese valor — NO la suma raw del SQLite.
+    /// Bug 2026-05-09: la UI mostraba 323 KB para un archivo de 323 KB con
+    /// RS(3,2) que el backend cobraba como 484.5 KB inflated.
+    func test_refreshProfile_usesBackendQuotaUsedBytesAsAuthoritative() async {
+        let api = MockProfileAPIClient()
+        // Backend reporta 484500 bytes (323 KB raw × 3 / 2).
+        api.profileResult = .success(
+            AuthProfileResponse(
+                username: "paco",
+                quotaMb: 256,
+                quotaUsedBytes: 484_500,
+                role: "END_USER"
+            )
+        )
+        // SQLite local sugiere otro valor (323000 raw) — no debe ganar.
+        let snapshot = FilesSyncSnapshot(
+            cursor: 1,
+            entries: [
+                FilesSyncEntry(
+                    entryId: "e1",
+                    path: "/foto.png",
+                    entryType: .file,
+                    sizeBytes: 323_000,
+                    checksum: nil,
+                    version: 1,
+                    updatedAt: Date(),
+                    deleted: false
+                )
+            ]
+        )
+        let store = SeededSyncStore(snapshot: snapshot)
+        let viewModel = MoreViewModel(apiClientFactory: { _ in api }, syncStateStore: store)
+        let sessionStore = makeSessionStore(baseURL: "http://localhost:8081", token: "tok")
+
+        await viewModel.refreshProfile(sessionStore: sessionStore)
+
+        XCTAssertEqual(viewModel.usedBytes, 484_500, "Backend RS-inflated wins over raw SQLite sum")
+        XCTAssertEqual(sessionStore.quotaUsedBytes, 484_500)
+    }
+
+    /// Si el backend falla pero hay snapshot SQLite, `usedBytes` cae al
+    /// fallback raw (degradación elegante). El error sigue surfaceándose
+    /// en `profileRefreshError`.
+    func test_refreshProfile_apiError_fallsBackToSnapshotUsedBytes() async {
+        let api = MockProfileAPIClient()
+        api.profileResult = .failure(.unauthorized)
+        let snapshot = FilesSyncSnapshot(
+            cursor: 1,
+            entries: [
+                FilesSyncEntry(
+                    entryId: "e1",
+                    path: "/a.bin",
+                    entryType: .file,
+                    sizeBytes: 700,
+                    checksum: nil,
+                    version: 1,
+                    updatedAt: Date(),
+                    deleted: false
+                )
+            ]
+        )
+        let store = SeededSyncStore(snapshot: snapshot)
+        let viewModel = MoreViewModel(apiClientFactory: { _ in api }, syncStateStore: store)
+        let sessionStore = makeSessionStore(baseURL: "http://localhost:8081", token: "tok")
+
+        await viewModel.refreshProfile(sessionStore: sessionStore)
+
+        XCTAssertNotNil(viewModel.profileRefreshError)
+        XCTAssertEqual(viewModel.usedBytes, 700, "Fallback al snapshot raw cuando backend falla")
+    }
+    
     // MARK: - Helpers
 
     private func testDefaults() -> UserDefaults {

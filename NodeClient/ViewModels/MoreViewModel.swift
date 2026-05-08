@@ -7,10 +7,14 @@ final class MoreViewModel: ObservableObject {
     @Published private(set) var logoutMessage: String?
     /// Rol del usuario devuelto por `GET /auth/me`.
     @Published private(set) var role: String?
-    /// Bytes consumidos derivados localmente del snapshot
-    /// SQLite (suma de `entry.sizeBytes` con `!entry.deleted`).
-    /// Calcular client-side da una métrica útil
-    /// sin coste extra de red.
+    /// Bytes consumidos. Política:
+    /// 1. Fuente primaria: `sessionStore.quotaUsedBytes` (RS-inflated
+    ///    autoritativo del backend `GET /auth/me`). Refleja el storage real
+    ///    distribuido (factor n/k de Reed-Solomon) que el cluster cobra.
+    /// 2. Fallback offline: suma de `entry.sizeBytes` del snapshot SQLite
+    ///    filtrando `!deleted && entryType == .file`. Subestima la quota
+    ///    real (ignora factor n/k) pero permite mostrar algo cuando no hay
+    ///    sesión activa o el backend no respondió aún.
     @Published private(set) var usedBytes: Int64 = 0
     @Published private(set) var isRefreshingProfile = false
     @Published private(set) var profileRefreshError: String?
@@ -86,14 +90,15 @@ final class MoreViewModel: ObservableObject {
         logoutMessage = nil
     }
 
-    /// Refresca el perfil del usuario (GET /auth/me) y
-    /// recalcula `usedBytes` localmente desde el snapshot SQLite. Llamado
-    /// onAppear de MoreView + tras upload/delete (hook a invocar desde
-    /// el caller cuando emerja).
+        /// Refresca el perfil del usuario (`GET /auth/me`) y resuelve `usedBytes`
+    /// con la política: backend `quotaUsedBytes` (RS-inflated, autoritativo)
+    /// como fuente primaria; fallback al snapshot SQLite cuando no hay sesión
+    /// activa o el backend falló. Llamado onAppear de MoreView + tras
+    /// upload/delete (hook a invocar desde el caller cuando emerja).
     func refreshProfile(sessionStore: SessionStore) async {
-        recomputeUsedBytes(namespace: sessionStore.syncNamespace)
-
         guard let token = sessionStore.sessionToken, !token.isEmpty else {
+            // Sin sesión: usedBytes proviene del snapshot SQLite (fallback).
+            recomputeUsedBytesFromSnapshot(namespace: sessionStore.syncNamespace)
             profileRefreshError = nil
             return
         }
@@ -119,14 +124,34 @@ final class MoreViewModel: ObservableObject {
                 expiresAt: sessionStore.sessionExpiresAt,
                 quotaUsedBytes: profile.quotaUsedBytes
             )
+            // Resolver `usedBytes` ahora que `sessionStore.quotaUsedBytes`
+            // está actualizado con el valor RS-inflated del backend.
+            resolveUsedBytes(sessionStore: sessionStore)
         } catch let error as NodeAPIError {
             profileRefreshError = Self.message(for: error)
+            // Backend falló — caemos al snapshot SQLite si está disponible.
+            recomputeUsedBytesFromSnapshot(namespace: sessionStore.syncNamespace)
         } catch {
             profileRefreshError = "No se pudo refrescar el perfil."
+            recomputeUsedBytesFromSnapshot(namespace: sessionStore.syncNamespace)
         }
     }
 
-    private func recomputeUsedBytes(namespace: String) {
+    /// Aplica la política `usedBytes`: prefiere `sessionStore.quotaUsedBytes`
+    /// (backend authoritative, RS-inflated); cae al snapshot SQLite cuando el
+    /// backend aún no ha respondido.
+    private func resolveUsedBytes(sessionStore: SessionStore) {
+        if let backendUsedBytes = sessionStore.quotaUsedBytes {
+            usedBytes = backendUsedBytes
+            return
+        }
+        recomputeUsedBytesFromSnapshot(namespace: sessionStore.syncNamespace)
+    }
+
+    /// Fallback offline: suma raw `entry.sizeBytes` del SQLite snapshot.
+    /// Subestima la quota real (ignora factor RS n/k) pero permite mostrar
+    /// algo cuando el backend no está disponible aún.
+    private func recomputeUsedBytesFromSnapshot(namespace: String) {
         guard let snapshot = syncStateStore.readSnapshot(namespace: namespace) else {
             usedBytes = 0
             return
