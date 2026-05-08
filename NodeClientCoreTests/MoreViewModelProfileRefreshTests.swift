@@ -158,7 +158,7 @@ final class MoreViewModelProfileRefreshTests: XCTestCase {
         XCTAssertNotNil(viewModel.profileRefreshError)
         XCTAssertEqual(viewModel.usedBytes, 700, "Fallback al snapshot raw cuando backend falla")
     }
-    
+
     // MARK: - Helpers
 
     private func testDefaults() -> UserDefaults {
