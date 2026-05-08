@@ -79,6 +79,23 @@ struct MacRootShell: View {
                 selection = .files
             }
         }
+        // Refresca quota usada en el sidebar tras upload/delete sin esperar a
+        // que el usuario cierre y abra la app. En macOS la sidebar es
+        // visible simultáneamente al panel de Archivos, así que el valor stale
+        // crea confusión. iOS no necesita esto porque su TabView pone "Más"
+        // fuera de pantalla mientras se opera; el `.task` onAppear de la
+        // pestaña ya cubre el refresco al volver a verla. Se filtra por
+        // `newValue != nil` para no disparar dos veces (set ↔ reset a nil).
+        .onChange(of: filesViewModel.uploadStatusMessage) { _, newValue in
+            if newValue != nil {
+                Task { await moreViewModel.refreshProfile(sessionStore: sessionStore) }
+            }
+        }
+        .onChange(of: filesViewModel.deleteStatusMessage) { _, newValue in
+            if newValue != nil {
+                Task { await moreViewModel.refreshProfile(sessionStore: sessionStore) }
+            }
+        }
     }
 }
 #endif
